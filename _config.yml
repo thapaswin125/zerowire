@@ -1,0 +1,81 @@
+# ZeroWire site configuration.
+# Built on the Chirpy theme gem, but every layout, include, and the stylesheet
+# are overridden locally. See CLAUDE.md before editing.
+
+theme: jekyll-theme-chirpy
+lang: en
+timezone: Etc/UTC
+
+title: ZeroWire
+tagline: 0day, CVE, and threat-intel signal
+description: >-
+  ZeroWire is my personal security newsfeed: a daily signal stream of
+  vulnerabilities and incidents, a must-know shortlist, and longer
+  threat research notes.
+
+# GitHub Pages project site. If this ever moves to a user site
+# (thapaswin125.github.io repo), set baseurl to "".
+url: "https://thapaswin125.github.io"
+baseurl: "/zerowire"
+
+author:
+  name: thapaswin125
+  url: https://github.com/thapaswin125
+
+permalink: /posts/:title/
+
+plugins:
+  - jekyll-paginate-v2
+  - jekyll-archives
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# jekyll-paginate-v2. The /daily-signal/ page enables pagination in its own
+# front matter and filters to the Daily Signal category.
+pagination:
+  enabled: true
+  per_page: 12
+  permalink: "/page/:num/"
+  title: ":title, page :num"
+  sort_field: "date"
+  sort_reverse: true
+  trail:
+    before: 2
+    after: 2
+
+# Tag archive pages at /tags/<tag>/.
+jekyll-archives:
+  enabled: [tags]
+  layouts:
+    tag: tag
+  permalinks:
+    tag: "/tags/:name/"
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+
+sass:
+  style: compressed
+
+exclude:
+  - README.md
+  - CLAUDE.md
+  - LICENSE
+  - Gemfile
+  - Gemfile.lock
+  - rss-sources.md
+  - scripts/
+  - _staging/
+  - .cache/
+  - node_modules/
+  - vendor/
+  - package.json
+  - package-lock.json
