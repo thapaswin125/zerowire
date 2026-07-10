@@ -1,0 +1,76 @@
+name: RSS digest
+
+on:
+  schedule:
+    # Daily at 04:30 UTC.
+    - cron: "30 4 * * *"
+  workflow_dispatch:
+    inputs:
+      use_llm:
+        description: "Use GitHub Models to refine summaries and tags"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  models: read
+
+concurrency:
+  group: rss-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: scripts/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Restore enrichment cache
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          key: enrichment-${{ github.run_id }}
+          restore-keys: enrichment-
+
+      - name: Fetch feeds
+        run: python scripts/fetch_feeds.py
+
+      - name: Enrich with NVD, EPSS, and KEV
+        env:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/enrich.py
+
+      - name: Triage (rules-based, optional LLM refinement)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ inputs.use_llm }}" = "true" ]; then
+            python scripts/triage.py --llm
+          else
+            python scripts/triage.py
+          fi
+
+      - name: Build PR body
+        run: python scripts/promote_drafts.py --pr-body > /tmp/digest-body.md
+
+      - name: Open daily digest PR
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: digest/daily
+          title: "Daily digest ${{ github.run_started_at }}"
+          body-path: /tmp/digest-body.md
+          labels: daily-digest
+          commit-message: "chore: stage daily digest candidates"
+          add-paths: _staging/
+          delete-branch: true
