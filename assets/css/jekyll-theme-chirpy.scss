@@ -1,0 +1,565 @@
+---
+---
+
+// ZeroWire stylesheet. This file overrides the Chirpy theme stylesheet of the
+// same name and is the ONLY place CSS lives. Extend it here; do not add
+// one-off style tags or extra stylesheets.
+
+// Palette: navy base, ember red for critical, muted gold and cream accents.
+$navy-0: #070c16;
+$navy-1: #0b1220;
+$navy-2: #111c30;
+$navy-3: #18263f;
+$line: #1f3050;
+$cream: #f0e7d4;
+$cream-dim: #b9c2d4;
+$muted: #7e90ac;
+$gold: #d2a74e;
+$gold-soft: #8a7137;
+$ember: #ff4f4a;
+$ember-deep: #b8231f;
+$orange: #f2994a;
+$yellow: #e3c54f;
+$teal: #4fc7b4;
+$blue: #5aa2ff;
+
+* { box-sizing: border-box; }
+
+html {
+  background: $navy-0;
+  scrollbar-color: $navy-3 $navy-0;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  color: $cream-dim;
+  background:
+    radial-gradient(1200px 400px at 70% -10%, rgba(90, 162, 255, 0.06), transparent 60%),
+    $navy-0;
+}
+
+a { color: $blue; text-decoration: none; }
+a:hover { color: lighten($blue, 12%); text-decoration: underline; }
+
+code, pre {
+  font-family: "Cascadia Code", "JetBrains Mono", Consolas, monospace;
+  font-size: 0.9em;
+}
+pre {
+  background: $navy-2;
+  border: 1px solid $line;
+  border-radius: 6px;
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+}
+:not(pre) > code {
+  background: $navy-2;
+  border: 1px solid $line;
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+  color: $yellow;
+}
+
+// ---------------------------------------------------------------- shell grid
+
+.zw-shell {
+  display: grid;
+  grid-template-columns: 215px minmax(0, 1fr) 265px;
+  gap: 1.75rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  min-height: 100vh;
+}
+
+.zw-center { min-width: 0; }
+
+.zw-main { padding-bottom: 3rem; }
+
+// ------------------------------------------------------------------- sidebar
+
+.zw-sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  padding: 1.6rem 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-height: 100vh;
+}
+
+.zw-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+}
+.zw-brand:hover { text-decoration: none; }
+
+.zw-brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 6px;
+  background: linear-gradient(150deg, $ember-deep, $ember);
+  color: $cream;
+  font-weight: 800;
+  font-size: 1.1rem;
+  box-shadow: 0 0 18px rgba(255, 79, 74, 0.35);
+}
+
+.zw-brand-name {
+  font-size: 1.25rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  color: $cream;
+}
+
+.zw-brand-tagline {
+  margin: 0;
+  font-size: 0.78rem;
+  color: $muted;
+  letter-spacing: 0.02em;
+}
+
+.zw-nav {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+}
+.zw-nav a {
+  display: block;
+  padding: 0.5rem 0.7rem;
+  margin-bottom: 0.2rem;
+  border-radius: 6px;
+  border-left: 2px solid transparent;
+  color: $cream-dim;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.zw-nav a:hover {
+  background: $navy-2;
+  color: $cream;
+  text-decoration: none;
+}
+.zw-nav a.active {
+  background: $navy-2;
+  border-left-color: $gold;
+  color: $gold;
+}
+
+.zw-sidebar-foot {
+  margin-top: auto;
+  font-size: 0.78rem;
+}
+.zw-sidebar-foot a { color: $muted; }
+
+// -------------------------------------------------------------------- topbar
+
+.zw-topbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem 0 1rem;
+  border-bottom: 1px solid $line;
+  margin-bottom: 1.25rem;
+  position: sticky;
+  top: 0;
+  background: linear-gradient(180deg, $navy-0 82%, rgba(7, 12, 22, 0));
+  z-index: 10;
+}
+
+.zw-topbar-title h1 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 750;
+  color: $cream;
+  letter-spacing: 0.02em;
+}
+
+.zw-topbar-sub {
+  margin: 0.15rem 0 0;
+  font-size: 0.82rem;
+  color: $muted;
+}
+
+.zw-search { min-width: 230px; position: relative; }
+.zw-search::after {
+  content: attr(data-hint);
+  position: absolute;
+  right: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7rem;
+  color: $muted;
+  pointer-events: none;
+}
+.zw-search:focus-within::after { content: ""; }
+
+// Pagefind UI theming via its CSS variables.
+.zw-search {
+  --pagefind-ui-scale: 0.78;
+  --pagefind-ui-primary: #{$gold};
+  --pagefind-ui-text: #{$cream-dim};
+  --pagefind-ui-background: #{$navy-2};
+  --pagefind-ui-border: #{$line};
+  --pagefind-ui-tag: #{$navy-3};
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 6px;
+  --pagefind-ui-font: inherit;
+}
+.zw-search .pagefind-ui__search-input {
+  color: $cream;
+}
+.zw-search .pagefind-ui__drawer {
+  position: absolute;
+  right: 0;
+  width: min(34rem, 80vw);
+  background: $navy-1;
+  border: 1px solid $line;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+  z-index: 30;
+}
+
+// Plain fallback input rendered when Pagefind assets are absent (local dev).
+.zw-search input.zw-search-fallback {
+  width: 100%;
+  background: $navy-2;
+  border: 1px solid $line;
+  border-radius: 6px;
+  color: $cream;
+  padding: 0.45rem 0.6rem;
+  font-size: 0.85rem;
+}
+
+// ---------------------------------------------------------------------- feed
+
+.zw-date-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.6rem 0 0.9rem;
+  color: $gold;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.zw-date-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, $gold-soft, transparent);
+}
+
+.zw-card {
+  background: $navy-1;
+  border: 1px solid $line;
+  border-left: 3px solid $muted;
+  border-radius: 8px;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 0.8rem;
+  transition: border-color 120ms ease, transform 120ms ease;
+}
+.zw-card:hover {
+  border-color: lighten($line, 12%);
+  transform: translateY(-1px);
+}
+
+.zw-card-info     { border-left-color: $muted; }
+.zw-card-low      { border-left-color: $teal; }
+.zw-card-medium   { border-left-color: $yellow; }
+.zw-card-high     { border-left-color: $orange; }
+.zw-card-critical { border-left-color: $ember; }
+
+.zw-card-hot {
+  background: linear-gradient(180deg, rgba(184, 35, 31, 0.14), $navy-1 55%);
+  box-shadow: inset 0 1px 0 rgba(255, 79, 74, 0.25);
+}
+
+.zw-card-kev {
+  border-color: $gold-soft;
+  box-shadow: 0 0 0 1px rgba(210, 167, 78, 0.35), 0 0 22px rgba(210, 167, 78, 0.08);
+}
+
+.zw-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.zw-card-time {
+  margin-left: auto;
+  font-size: 0.72rem;
+  color: $muted;
+  font-variant-numeric: tabular-nums;
+}
+
+.zw-card-title {
+  margin: 0.45rem 0 0.3rem;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  font-weight: 700;
+}
+.zw-card-title a { color: $cream; }
+.zw-card-title a:hover { color: $gold; text-decoration: none; }
+
+.zw-card-summary {
+  margin: 0 0 0.55rem;
+  font-size: 0.88rem;
+  color: $cream-dim;
+}
+
+.zw-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.55rem;
+}
+
+.zw-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.zw-card-research .zw-card-title { font-size: 1.15rem; }
+
+// -------------------------------------------------------- badges and chips
+
+.zw-sev {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.14rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid;
+}
+.zw-sev-info     { color: $muted;  border-color: rgba(126, 144, 172, 0.5);  background: rgba(126, 144, 172, 0.1); }
+.zw-sev-low      { color: $teal;   border-color: rgba(79, 199, 180, 0.5);   background: rgba(79, 199, 180, 0.08); }
+.zw-sev-medium   { color: $yellow; border-color: rgba(227, 197, 79, 0.5);   background: rgba(227, 197, 79, 0.08); }
+.zw-sev-high     { color: $orange; border-color: rgba(242, 153, 74, 0.55);  background: rgba(242, 153, 74, 0.1); }
+.zw-sev-critical { color: $ember;  border-color: rgba(255, 79, 74, 0.65);   background: rgba(255, 79, 74, 0.12); }
+
+.zw-flag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.14rem 0.5rem;
+  border-radius: 4px;
+}
+.zw-flag-kev { background: $gold; color: $navy-0; }
+.zw-flag-mustknow { background: rgba(90, 162, 255, 0.16); color: $blue; border: 1px solid rgba(90, 162, 255, 0.4); }
+
+.zw-chip {
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 0.12rem 0.5rem;
+  border-radius: 4px;
+  background: $navy-2;
+  border: 1px solid $line;
+  color: $cream-dim;
+  font-variant-numeric: tabular-nums;
+}
+a.zw-chip:hover { text-decoration: none; border-color: $muted; color: $cream; }
+.zw-chip-cve { color: $gold; border-color: $gold-soft; }
+.zw-chip-mitre { color: $teal; }
+
+.zw-tag {
+  display: inline-block;
+  font-size: 0.74rem;
+  color: $muted;
+  background: transparent;
+  border: 1px solid $line;
+  border-radius: 999px;
+  padding: 0.1rem 0.55rem;
+  margin: 0 0.25rem 0.25rem 0;
+}
+.zw-tag:hover { color: $gold; border-color: $gold-soft; text-decoration: none; }
+.zw-tag-count { color: $gold-soft; margin-left: 0.3rem; font-variant-numeric: tabular-nums; }
+
+.zw-sources { display: inline-flex; gap: 0.6rem; flex-wrap: wrap; }
+.zw-source {
+  font-size: 0.74rem;
+  color: $blue;
+}
+.zw-source::before { content: "\2197\00a0"; color: $muted; }
+
+// --------------------------------------------------------------- right panel
+
+.zw-panel {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  max-height: 100vh;
+  overflow-y: auto;
+  padding: 1.6rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.zw-panel-block {
+  background: $navy-1;
+  border: 1px solid $line;
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+}
+
+.zw-panel-title {
+  margin: 0 0 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $gold;
+}
+
+.zw-recent {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.zw-recent li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px dashed rgba(31, 48, 80, 0.7);
+  font-size: 0.82rem;
+}
+.zw-recent li:last-child { border-bottom: 0; }
+.zw-recent a {
+  color: $cream-dim;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.zw-recent a:hover { color: $gold; text-decoration: none; }
+.zw-recent-date { color: $muted; font-size: 0.72rem; white-space: nowrap; }
+
+.zw-tag-cloud { display: flex; flex-wrap: wrap; }
+.zw-tag-trend { border-color: $gold-soft; color: $cream-dim; }
+
+// --------------------------------------------------------------- post pages
+
+.zw-post-title {
+  margin: 0.6rem 0 0.6rem;
+  font-size: 1.6rem;
+  line-height: 1.3;
+  color: $cream;
+}
+
+.zw-post-head {
+  border-bottom: 1px solid $line;
+  padding-bottom: 0.9rem;
+  margin-bottom: 1.2rem;
+}
+
+.zw-post-kev .zw-post-head { border-bottom-color: $gold-soft; }
+
+.zw-post-body {
+  font-size: 0.95rem;
+  max-width: 70ch;
+}
+.zw-post-body h2, .zw-post-body h3 { color: $cream; margin-top: 1.6em; }
+.zw-post-body blockquote {
+  margin: 1em 0;
+  padding: 0.2em 1em;
+  border-left: 3px solid $gold-soft;
+  color: $muted;
+}
+
+.zw-post-section { margin-top: 1.8rem; }
+.zw-post-section h2 {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $gold;
+}
+
+.zw-post-foot { margin-top: 1.6rem; border-top: 1px solid $line; padding-top: 0.9rem; }
+
+// --------------------------------------------------------------------- misc
+
+.zw-pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1.6rem 0;
+}
+.zw-pager-link {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: $gold;
+  border: 1px solid $gold-soft;
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+}
+.zw-pager-link:hover { background: $navy-2; text-decoration: none; }
+.zw-pager-disabled { opacity: 0.35; pointer-events: none; }
+.zw-pager-status { font-size: 0.78rem; color: $muted; }
+
+.zw-empty, .zw-archive-note {
+  color: $muted;
+  font-size: 0.9rem;
+  margin: 1.2rem 0;
+}
+
+.zw-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.2rem 0 2rem;
+  border-top: 1px solid $line;
+  font-size: 0.75rem;
+  color: $muted;
+}
+.zw-footer a { color: $muted; text-decoration: underline; }
+
+// --------------------------------------------------------------- responsive
+
+@media (max-width: 1100px) {
+  .zw-shell { grid-template-columns: 200px minmax(0, 1fr); }
+  .zw-panel { display: none; }
+}
+
+@media (max-width: 780px) {
+  .zw-shell {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 0 0.9rem;
+  }
+  .zw-sidebar {
+    position: static;
+    min-height: 0;
+    padding: 1rem 0 0;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .zw-brand-tagline, .zw-sidebar-foot { display: none; }
+  .zw-nav { display: flex; margin: 0; gap: 0.2rem; }
+  .zw-nav a { padding: 0.35rem 0.55rem; border-left: 0; border-bottom: 2px solid transparent; border-radius: 4px; }
+  .zw-nav a.active { border-left: 0; border-bottom-color: $gold; }
+  .zw-topbar { position: static; flex-wrap: wrap; align-items: center; padding-top: 0.8rem; }
+  .zw-search { min-width: 100%; }
+  .zw-card-time { flex-basis: 100%; margin-left: 0; }
+}
