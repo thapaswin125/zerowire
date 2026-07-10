@@ -7,7 +7,10 @@ dash. Lines starting with `#` are headings, not feeds.
 
 ## Vulnerability data
 
-- [NVD recent CVEs](https://nvd.nist.gov/feeds/xml/cve/misc/nvd-rss-analyzed.xml)
+NVD retired its RSS feeds, so recent CVEs arrive via the CVEFeed mirror
+below; authoritative CVSS still comes from the NVD API during enrichment.
+
+- [Recent CVEs (CVEFeed mirror of NVD)](https://cvefeed.io/rssfeed/latest.xml)
 - [CISA advisories and alerts](https://www.cisa.gov/cybersecurity-advisories/all.xml)
 
 ## News

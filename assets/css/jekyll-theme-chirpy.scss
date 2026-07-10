@@ -5,6 +5,8 @@
 // same name and is the ONLY place CSS lives. Extend it here; do not add
 // one-off style tags or extra stylesheets.
 
+@use "sass:color";
+
 // Palette: navy base, ember red for critical, muted gold and cream accents.
 $navy-0: #070c16;
 $navy-1: #0b1220;
@@ -42,7 +44,7 @@ body {
 }
 
 a { color: $blue; text-decoration: none; }
-a:hover { color: lighten($blue, 12%); text-decoration: underline; }
+a:hover { color: color.adjust($blue, $lightness: 12%); text-decoration: underline; }
 
 code, pre {
   font-family: "Cascadia Code", "JetBrains Mono", Consolas, monospace;
@@ -271,7 +273,7 @@ pre {
   transition: border-color 120ms ease, transform 120ms ease;
 }
 .zw-card:hover {
-  border-color: lighten($line, 12%);
+  border-color: color.adjust($line, $lightness: 12%);
   transform: translateY(-1px);
 }
 

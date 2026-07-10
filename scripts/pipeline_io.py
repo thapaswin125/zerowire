@@ -26,7 +26,7 @@ def utcnow() -> datetime:
 
 
 def load_front_matter(path: Path) -> tuple[dict, str]:
-    text = path.read_text(encoding="utf-8")
+    text = path.read_text(encoding="utf-8-sig")
     match = FRONT_MATTER_RE.match(text)
     if not match:
         return {}, text
