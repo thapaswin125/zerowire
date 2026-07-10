@@ -1,0 +1,29 @@
+# Jekyll
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Bundler
+vendor/
+.bundle/
+
+# Pagefind output (built at deploy time)
+pagefind/
+_site/pagefind/
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Pipeline cache (enrichment results, safe to delete)
+.cache/
+
+# Editor and OS noise
+.DS_Store
+Thumbs.db
+*.swp
