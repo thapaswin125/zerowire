@@ -1,0 +1,27 @@
+{% comment %}
+Trending = tags counted across the 25 most recent posts, top 8 by count.
+Counts are zero-padded into sortable "NN|tag" strings because Liquid has no
+sort-by-value for maps.
+{% endcomment %}
+{% assign recent_tags = "" | split: "" %}
+{% for post in site.posts limit: 25 %}
+  {% assign recent_tags = recent_tags | concat: post.tags %}
+{% endfor %}
+{% assign uniq_tags = recent_tags | uniq %}
+{% assign ranked = "" | split: "" %}
+{% for tag in uniq_tags %}
+  {% assign n = 0 %}
+  {% for t in recent_tags %}{% if t == tag %}{% assign n = n | plus: 1 %}{% endif %}{% endfor %}
+  {% assign key = n | prepend: "00" | slice: -2, 2 | append: "|" | append: tag %}
+  {% assign ranked = ranked | push: key %}
+{% endfor %}
+{% assign ranked = ranked | sort | reverse %}
+<section class="zw-panel-block">
+  <h3 class="zw-panel-title">Trending Tags</h3>
+  <div class="zw-tag-cloud">
+    {% for key in ranked limit: 8 %}
+    {% assign parts = key | split: "|" %}
+    <a class="zw-tag zw-tag-trend" href="{{ parts[1] | slugify | prepend: '/tags/' | append: '/' | relative_url }}">{{ parts[1] }}<span class="zw-tag-count">{{ parts[0] | abs }}</span></a>
+    {% endfor %}
+  </div>
+</section>

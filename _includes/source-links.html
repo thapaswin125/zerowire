@@ -1,0 +1,7 @@
+{% if include.sources and include.sources.size > 0 %}
+<span class="zw-sources">
+  {% for src in include.sources %}
+  <a class="zw-source" href="{{ src.url }}" rel="noopener" target="_blank">{{ src.name }}</a>
+  {% endfor %}
+</span>
+{% endif %}

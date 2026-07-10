@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% seo %}
+  <link rel="stylesheet" href="{{ '/assets/css/jekyll-theme-chirpy.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/pagefind/pagefind-ui.css' | relative_url }}" onerror="this.remove()">
+  <script src="{{ '/pagefind/pagefind-ui.js' | relative_url }}" defer onerror="this.remove()"></script>
+  <script src="{{ '/assets/js/zerowire.js' | relative_url }}" defer></script>
+</head>
+<body>
+  <div class="zw-shell">
+    {% include sidebar.html %}
+    <div class="zw-center">
+      {% include topbar.html %}
+      <main class="zw-main" id="zw-main">
+        {{ content }}
+      </main>
+      <footer class="zw-footer">
+        <span>ZeroWire, curated by <a href="https://github.com/thapaswin125">thapaswin125</a>.</span>
+        <span>Signal, not noise.</span>
+      </footer>
+    </div>
+    <aside class="zw-panel">
+      {% include recently-updated.html %}
+      {% include trending-tags.html %}
+      <section class="zw-panel-block">
+        <h3 class="zw-panel-title">Tags</h3>
+        <div class="zw-tag-cloud">
+          {% assign sorted_tags = site.tags | sort %}
+          {% for tag in sorted_tags %}
+          <a class="zw-tag" href="{{ tag[0] | slugify | prepend: '/tags/' | append: '/' | relative_url }}">{{ tag[0] }}<span class="zw-tag-count">{{ tag[1] | size }}</span></a>
+          {% endfor %}
+        </div>
+      </section>
+    </aside>
+  </div>
+</body>
+</html>

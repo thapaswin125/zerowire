@@ -1,0 +1,16 @@
+<nav class="zw-sidebar" aria-label="Primary">
+  <a class="zw-brand" href="{{ '/daily-signal/' | relative_url }}">
+    <span class="zw-brand-mark">0</span>
+    <span class="zw-brand-name">ZeroWire</span>
+  </a>
+  <p class="zw-brand-tagline">{{ site.tagline }}</p>
+  <ul class="zw-nav">
+    {% assign here = page.url %}
+    <li><a href="{{ '/daily-signal/' | relative_url }}" {% if here contains '/daily-signal/' %}class="active"{% endif %}>Daily Signal</a></li>
+    <li><a href="{{ '/must-know/' | relative_url }}" {% if here == '/must-know/' %}class="active"{% endif %}>Must-Know</a></li>
+    <li><a href="{{ '/threat-research/' | relative_url }}" {% if here == '/threat-research/' %}class="active"{% endif %}>Threat Research</a></li>
+  </ul>
+  <div class="zw-sidebar-foot">
+    <a href="https://github.com/thapaswin125/zerowire">Source</a>
+  </div>
+</nav>

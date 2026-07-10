@@ -1,0 +1,11 @@
+<section class="zw-panel-block">
+  <h3 class="zw-panel-title">Recently Updated</h3>
+  <ul class="zw-recent">
+    {% for post in site.posts limit: 5 %}
+    <li>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      <span class="zw-recent-date">{{ post.date | date: "%b %-d" }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</section>

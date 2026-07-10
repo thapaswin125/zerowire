@@ -1,0 +1,7 @@
+<header class="zw-topbar">
+  <div class="zw-topbar-title">
+    <h1>{{ page.title | default: site.title }}</h1>
+    {% if page.subtitle %}<p class="zw-topbar-sub">{{ page.subtitle }}</p>{% endif %}
+  </div>
+  <div class="zw-search" id="zw-search" data-hint="Press / to search"></div>
+</header>

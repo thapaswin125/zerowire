@@ -1,0 +1,20 @@
+---
+layout: default
+---
+{{ content }}
+{% assign items = site.categories['Daily Signal'] | where: 'must_know', true %}
+{% if items.size == 0 %}
+<p class="zw-empty">Nothing is flagged must-know right now. Quiet is good.</p>
+{% else %}
+<div class="zw-feed">
+  {% assign prev_day = "" %}
+  {% for post in items %}
+    {% assign day = post.date | date: "%Y-%m-%d" %}
+    {% if day != prev_day %}
+      {% include date-divider.html date=post.date %}
+      {% assign prev_day = day %}
+    {% endif %}
+    {% include signal-card.html post=post %}
+  {% endfor %}
+</div>
+{% endif %}

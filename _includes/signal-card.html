@@ -1,0 +1,26 @@
+{% assign p = include.post %}
+{% assign sev = p.severity | default: 'info' | downcase %}
+<article class="zw-card zw-card-{{ sev }}{% if p.kev %} zw-card-kev{% endif %}{% if sev == 'critical' %} zw-card-hot{% endif %}">
+  <div class="zw-card-head">
+    {% include severity-badge.html severity=p.severity %}
+    {% if p.kev %}<span class="zw-flag zw-flag-kev" title="Listed in the CISA Known Exploited Vulnerabilities catalog">KEV</span>{% endif %}
+    {% if p.must_know %}<span class="zw-flag zw-flag-mustknow">must-know</span>{% endif %}
+    <time class="zw-card-time" datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%H:%M UTC" }}</time>
+  </div>
+  <h2 class="zw-card-title"><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h2>
+  <p class="zw-card-summary">{{ p.excerpt | strip_html | normalize_whitespace | truncate: 260 }}</p>
+  <div class="zw-card-meta">
+    {% if p.cve %}<span class="zw-chip zw-chip-cve">{{ p.cve }}</span>{% endif %}
+    {% if p.cvss %}<span class="zw-chip" title="CVSS base score">CVSS {{ p.cvss }}</span>{% endif %}
+    {% if p.epss %}<span class="zw-chip" title="EPSS exploit prediction score">EPSS {{ p.epss }}</span>{% endif %}
+    {% if p.mitre %}{% for tid in p.mitre %}<a class="zw-chip zw-chip-mitre" href="https://attack.mitre.org/techniques/{{ tid | replace: '.', '/' }}/" rel="noopener" target="_blank">{{ tid }}</a>{% endfor %}{% endif %}
+  </div>
+  <div class="zw-card-foot">
+    <span class="zw-card-tags">
+      {% for tag in p.tags limit: 5 %}
+      <a class="zw-tag" href="{{ tag | slugify | prepend: '/tags/' | append: '/' | relative_url }}">{{ tag }}</a>
+      {% endfor %}
+    </span>
+    {% include source-links.html sources=p.sources %}
+  </div>
+</article>

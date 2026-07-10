@@ -1,0 +1,65 @@
+---
+layout: default
+---
+{% assign sev = page.severity | default: 'info' | downcase %}
+<article class="zw-post zw-post-{{ sev }}{% if page.kev %} zw-post-kev{% endif %}" data-pagefind-body>
+  <header class="zw-post-head">
+    <div class="zw-card-head">
+      {% include severity-badge.html severity=page.severity %}
+      {% if page.kev %}<span class="zw-flag zw-flag-kev" title="Listed in the CISA Known Exploited Vulnerabilities catalog">KEV</span>{% endif %}
+      {% if page.must_know %}<span class="zw-flag zw-flag-mustknow">must-know</span>{% endif %}
+      <time class="zw-card-time" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y, %H:%M UTC" }}</time>
+    </div>
+    <h1 class="zw-post-title">{{ page.title }}</h1>
+    <div class="zw-card-meta">
+      {% if page.cve %}<span class="zw-chip zw-chip-cve">{{ page.cve }}</span>{% endif %}
+      {% if page.cvss %}<span class="zw-chip" title="CVSS base score">CVSS {{ page.cvss }}</span>{% endif %}
+      {% if page.epss %}<span class="zw-chip" title="EPSS exploit prediction score">EPSS {{ page.epss }}</span>{% endif %}
+    </div>
+  </header>
+
+  <div class="zw-post-body">
+    {{ content }}
+  </div>
+
+  {% if page.mitre and page.mitre.size > 0 %}
+  <section class="zw-post-section">
+    <h2>ATT&amp;CK techniques</h2>
+    <div class="zw-card-meta">
+      {% for tid in page.mitre %}
+      <a class="zw-chip zw-chip-mitre" href="https://attack.mitre.org/techniques/{{ tid | replace: '.', '/' }}/" rel="noopener" target="_blank">{{ tid }}</a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.related_detections and page.related_detections.size > 0 %}
+  <section class="zw-post-section">
+    <h2>Related detections</h2>
+    <ul>
+      {% for det in page.related_detections %}
+      <li><a href="{{ det.url }}" rel="noopener" target="_blank">{{ det.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if page.sources and page.sources.size > 0 %}
+  <section class="zw-post-section">
+    <h2>Sources</h2>
+    <ul>
+      {% for src in page.sources %}
+      <li><a href="{{ src.url }}" rel="noopener" target="_blank">{{ src.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <footer class="zw-post-foot">
+    <span class="zw-card-tags">
+      {% for tag in page.tags %}
+      <a class="zw-tag" href="{{ tag | slugify | prepend: '/tags/' | append: '/' | relative_url }}">{{ tag }}</a>
+      {% endfor %}
+    </span>
+  </footer>
+</article>
