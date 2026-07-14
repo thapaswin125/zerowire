@@ -1,6 +1,14 @@
 {% assign p = include.post %}
 {% assign sev = p.severity | default: 'info' | downcase %}
-<article class="zw-card zw-card-{{ sev }}{% if p.kev %} zw-card-kev{% endif %}{% if sev == 'critical' %} zw-card-hot{% endif %}">
+{% assign cvss_band = '' %}
+{% if p.cvss %}
+  {% if p.cvss >= 9.0 %}{% assign cvss_band = 'critical' %}
+  {% elsif p.cvss >= 7.0 %}{% assign cvss_band = 'high' %}
+  {% elsif p.cvss >= 4.0 %}{% assign cvss_band = 'medium' %}
+  {% else %}{% assign cvss_band = 'low' %}{% endif %}
+{% endif %}
+<article class="zw-card zw-card-{{ sev }}{% if p.kev %} zw-card-kev{% endif %}{% if sev == 'critical' %} zw-card-hot{% endif %}"
+         data-severity="{{ sev }}" data-kev="{{ p.kev | default: false }}">
   <div class="zw-card-head">
     {% include severity-badge.html severity=p.severity %}
     {% if p.kev %}<span class="zw-flag zw-flag-kev" title="Listed in the CISA Known Exploited Vulnerabilities catalog">KEV</span>{% endif %}
@@ -8,11 +16,11 @@
     <time class="zw-card-time" datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%H:%M UTC" }}</time>
   </div>
   <h2 class="zw-card-title"><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h2>
-  <p class="zw-card-summary">{{ p.excerpt | strip_html | normalize_whitespace | truncate: 260 }}</p>
+  <p class="zw-card-summary">{{ p.excerpt | strip_html | normalize_whitespace | truncate: 600 }}</p>
   <div class="zw-card-meta">
     {% if p.cve %}<span class="zw-chip zw-chip-cve">{{ p.cve }}</span>{% endif %}
-    {% if p.cvss %}<span class="zw-chip" title="CVSS base score">CVSS {{ p.cvss }}</span>{% endif %}
-    {% if p.epss %}<span class="zw-chip" title="EPSS exploit prediction score">EPSS {{ p.epss }}</span>{% endif %}
+    {% if p.cvss %}<span class="zw-chip zw-chip-cvss-{{ cvss_band }}" title="CVSS base score">CVSS {{ p.cvss }}</span>{% endif %}
+    {% if p.epss %}<span class="zw-chip" title="EPSS: probability of exploitation in the next 30 days">EPSS {{ p.epss | times: 100 | round }}%</span>{% endif %}
     {% if p.mitre %}{% for tid in p.mitre %}<a class="zw-chip zw-chip-mitre" href="https://attack.mitre.org/techniques/{{ tid | replace: '.', '/' }}/" rel="noopener" target="_blank">{{ tid }}</a>{% endfor %}{% endif %}
   </div>
   <div class="zw-card-foot">

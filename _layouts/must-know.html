@@ -7,14 +7,12 @@ layout: default
 <p class="zw-empty">Nothing is flagged must-know right now. Quiet is good.</p>
 {% else %}
 <div class="zw-feed">
-  {% assign prev_day = "" %}
-  {% for post in items %}
-    {% assign day = post.date | date: "%Y-%m-%d" %}
-    {% if day != prev_day %}
-      {% include date-divider.html date=post.date %}
-      {% assign prev_day = day %}
-    {% endif %}
-    {% include signal-card.html post=post %}
+  {% assign groups = items | group_by_exp: 'post', 'post.date | date: "%Y-%m-%d"' %}
+  {% for group in groups %}
+    {% include date-divider.html date=group.items.first.date count=group.items.size %}
+    {% for post in group.items %}
+      {% include signal-card.html post=post %}
+    {% endfor %}
   {% endfor %}
 </div>
 {% endif %}

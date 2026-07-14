@@ -3,13 +3,11 @@ layout: default
 ---
 <div class="zw-feed">
   <p class="zw-archive-note">{{ page.posts | size }} item{% if page.posts.size != 1 %}s{% endif %} tagged <strong>{{ page.title }}</strong>.</p>
-  {% assign prev_day = "" %}
-  {% for post in page.posts %}
-    {% assign day = post.date | date: "%Y-%m-%d" %}
-    {% if day != prev_day %}
-      {% include date-divider.html date=post.date %}
-      {% assign prev_day = day %}
-    {% endif %}
-    {% include signal-card.html post=post %}
+  {% assign groups = page.posts | group_by_exp: 'post', 'post.date | date: "%Y-%m-%d"' %}
+  {% for group in groups %}
+    {% include date-divider.html date=group.items.first.date count=group.items.size %}
+    {% for post in group.items %}
+      {% include signal-card.html post=post %}
+    {% endfor %}
   {% endfor %}
 </div>

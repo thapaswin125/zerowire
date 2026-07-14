@@ -244,6 +244,68 @@ pre {
   font-size: 0.85rem;
 }
 
+// ---------------------------------------------------- stat strip and filters
+
+.zw-stats {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.1rem;
+  background: $navy-1;
+  border: 1px solid $line;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.8rem;
+  color: $muted;
+}
+.zw-stats-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $gold;
+  margin-right: 0.3rem;
+}
+.zw-stat strong {
+  color: $cream;
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+  margin-right: 0.25rem;
+}
+.zw-stat-critical strong { color: $ember; }
+.zw-stat-high strong     { color: $orange; }
+.zw-stat-kev strong      { color: $gold; }
+.zw-stat-mustknow strong { color: $blue; }
+
+.zw-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.4rem;
+}
+.zw-filter {
+  font: inherit;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: $muted;
+  background: transparent;
+  border: 1px solid $line;
+  border-radius: 999px;
+  padding: 0.22rem 0.7rem;
+  cursor: pointer;
+}
+.zw-filter:hover { color: $cream; border-color: $muted; }
+.zw-filter.active { color: $navy-0; background: $gold; border-color: $gold; }
+.zw-filter-critical.active { background: $ember; border-color: $ember; }
+.zw-filter-high.active     { background: $orange; border-color: $orange; }
+.zw-filter-medium.active   { background: $yellow; border-color: $yellow; }
+.zw-filter-low.active      { background: $teal; border-color: $teal; }
+.zw-filter-info.active     { background: $muted; border-color: $muted; }
+
+.zw-hidden { display: none !important; }
+
 // ---------------------------------------------------------------------- feed
 
 .zw-date-divider {
@@ -262,6 +324,14 @@ pre {
   flex: 1;
   height: 1px;
   background: linear-gradient(90deg, $gold-soft, transparent);
+}
+.zw-date-count {
+  order: 1;
+  color: $muted;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  font-variant-numeric: tabular-nums;
 }
 
 .zw-card {
@@ -321,7 +391,25 @@ pre {
   margin: 0 0 0.55rem;
   font-size: 0.88rem;
   color: $cream-dim;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
+.zw-card-summary.zw-expanded { -webkit-line-clamp: unset; }
+
+.zw-more {
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: $gold;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: -0.35rem 0 0.55rem;
+  cursor: pointer;
+}
+.zw-more:hover { text-decoration: underline; }
 
 .zw-card-meta {
   display: flex;
@@ -381,6 +469,10 @@ pre {
 a.zw-chip:hover { text-decoration: none; border-color: $muted; color: $cream; }
 .zw-chip-cve { color: $gold; border-color: $gold-soft; }
 .zw-chip-mitre { color: $teal; }
+.zw-chip-cvss-critical { color: $ember;  border-color: rgba(255, 79, 74, 0.55); }
+.zw-chip-cvss-high     { color: $orange; border-color: rgba(242, 153, 74, 0.5); }
+.zw-chip-cvss-medium   { color: $yellow; border-color: rgba(227, 197, 79, 0.5); }
+.zw-chip-cvss-low      { color: $teal;   border-color: rgba(79, 199, 180, 0.5); }
 
 .zw-tag {
   display: inline-block;

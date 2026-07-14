@@ -1,0 +1,26 @@
+{% comment %}
+"Last 7 days on the wire" glance strip, relative to the newest signal item
+so a quiet repo does not decay to all zeroes the day after a busy week.
+{% endcomment %}
+{% assign signal = site.categories['Daily Signal'] %}
+{% if signal.size > 0 %}
+{% assign latest_ts = signal.first.date | date: '%s' | plus: 0 %}
+{% assign cutoff = latest_ts | minus: 604800 %}
+{% assign recent = "" | split: "" %}
+{% for p in signal %}
+  {% assign ts = p.date | date: '%s' | plus: 0 %}
+  {% if ts >= cutoff %}{% assign recent = recent | push: p %}{% endif %}
+{% endfor %}
+{% assign crit = recent | where: 'severity', 'critical' %}
+{% assign high = recent | where: 'severity', 'high' %}
+{% assign kev = recent | where: 'kev', true %}
+{% assign mk = recent | where: 'must_know', true %}
+<section class="zw-stats" aria-label="Last 7 days at a glance">
+  <span class="zw-stats-label">Last 7 days</span>
+  <span class="zw-stat"><strong>{{ recent.size }}</strong> items</span>
+  <span class="zw-stat zw-stat-critical"><strong>{{ crit.size }}</strong> critical</span>
+  <span class="zw-stat zw-stat-high"><strong>{{ high.size }}</strong> high</span>
+  <span class="zw-stat zw-stat-kev"><strong>{{ kev.size }}</strong> KEV</span>
+  <span class="zw-stat zw-stat-mustknow"><strong>{{ mk.size }}</strong> must-know</span>
+</section>
+{% endif %}

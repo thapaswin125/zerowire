@@ -2,6 +2,13 @@
 layout: default
 ---
 {% assign sev = page.severity | default: 'info' | downcase %}
+{% assign cvss_band = '' %}
+{% if page.cvss %}
+  {% if page.cvss >= 9.0 %}{% assign cvss_band = 'critical' %}
+  {% elsif page.cvss >= 7.0 %}{% assign cvss_band = 'high' %}
+  {% elsif page.cvss >= 4.0 %}{% assign cvss_band = 'medium' %}
+  {% else %}{% assign cvss_band = 'low' %}{% endif %}
+{% endif %}
 <article class="zw-post zw-post-{{ sev }}{% if page.kev %} zw-post-kev{% endif %}" data-pagefind-body>
   <header class="zw-post-head">
     <div class="zw-card-head">
@@ -13,8 +20,8 @@ layout: default
     <h1 class="zw-post-title">{{ page.title }}</h1>
     <div class="zw-card-meta">
       {% if page.cve %}<span class="zw-chip zw-chip-cve">{{ page.cve }}</span>{% endif %}
-      {% if page.cvss %}<span class="zw-chip" title="CVSS base score">CVSS {{ page.cvss }}</span>{% endif %}
-      {% if page.epss %}<span class="zw-chip" title="EPSS exploit prediction score">EPSS {{ page.epss }}</span>{% endif %}
+      {% if page.cvss %}<span class="zw-chip zw-chip-cvss-{{ cvss_band }}" title="CVSS base score">CVSS {{ page.cvss }}</span>{% endif %}
+      {% if page.epss %}<span class="zw-chip" title="EPSS: probability of exploitation in the next 30 days">EPSS {{ page.epss | times: 100 | round }}%</span>{% endif %}
     </div>
   </header>
 
