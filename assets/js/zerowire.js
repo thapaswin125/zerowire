@@ -39,7 +39,8 @@
       var input = document.createElement("input");
       input.className = "zw-search-fallback";
       input.type = "search";
-      input.placeholder = "Search works on the deployed site";
+      input.placeholder = "Search (deployed site only)";
+      input.title = "Pagefind indexes the built site, so search works after deploy";
       input.setAttribute("aria-label", "Search");
       mount.appendChild(input);
     }

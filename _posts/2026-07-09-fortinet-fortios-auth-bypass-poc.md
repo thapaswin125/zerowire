@@ -3,7 +3,7 @@ title: "Public PoC lands for FortiOS SSL-VPN authentication bypass"
 date: 2026-07-09 08:20:00 +0000
 categories: [Daily Signal]
 tags: [vpn, auth-bypass, poc, edge-device]
-severity: high
+severity: critical
 must_know: true
 cve: CVE-2024-55591
 cvss: 9.6

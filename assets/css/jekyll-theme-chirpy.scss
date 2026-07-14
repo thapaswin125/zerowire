@@ -203,7 +203,8 @@ pre {
   color: $muted;
   pointer-events: none;
 }
-.zw-search:focus-within::after { content: ""; }
+.zw-search:focus-within::after,
+.zw-search:has(input.zw-search-fallback)::after { content: ""; }
 
 // Pagefind UI theming via its CSS variables.
 .zw-search {
