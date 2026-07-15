@@ -1,0 +1,17 @@
+---
+title: Windows 11 KB5101650 & KB5099414 cumulative updates released
+date: 2026-07-14 22:56:21 +0000
+categories:
+- Daily Signal
+tags:
+- windows
+- security-news
+- advisory
+severity: info
+must_know: false
+sources:
+- name: BleepingComputer
+  url: https://www.bleepingcomputer.com/news/microsoft/windows-11-kb5101650-and-kb5099414-cumulative-updates-released/
+---
+
+Microsoft has released Windows 11's June 2026 Update for version 25H2, 24H2, and 23H2, bringing fixes for over 570 security issues. [...]

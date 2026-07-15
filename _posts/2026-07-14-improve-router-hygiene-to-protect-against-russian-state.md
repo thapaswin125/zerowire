@@ -1,0 +1,21 @@
+---
+title: Improve Router Hygiene to Protect Against Russian State-Sponsored Targeting
+date: 2026-07-14 22:56:21 +0000
+categories:
+- Daily Signal
+tags:
+- apt
+- patch
+- security-news
+severity: critical
+must_know: true
+sources:
+- name: CISA advisories and alerts
+  url: https://www.cisa.gov/news-events/cybersecurity-advisories/aa26-194a
+cve: CVE-2018-0171
+cvss: 9.8
+epss: 0.995
+kev: true
+---
+
+Russian Government-Sponsored Activity Targets Poorly Configured and Vulnerable Devices Across Critical Sectors Executive summary Russian Federal Security Service (FSB) Center 16 cyber actors continue to exploit poorly configured and vulnerable networking devices worldwide, opportunistically compromising multiple critical infrastructure sector networks. This joint Cybersecurity Advisory (CSA) builds on FBI’s Russian Government Cyber Actors ...
