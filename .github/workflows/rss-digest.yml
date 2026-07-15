@@ -61,6 +61,19 @@ jobs:
             python scripts/triage.py
           fi
 
+      - name: Auto-publish must-know items
+        run: |
+          python scripts/promote_drafts.py --must-know
+          git config user.name "zerowire-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add _posts
+          if git diff --cached --quiet; then
+            echo "no must-know items today"
+          else
+            git commit -m "feat: auto-publish must-know signals"
+            git push origin main
+          fi
+
       - name: Build PR body
         run: python scripts/promote_drafts.py --pr-body > /tmp/digest-body.md
 

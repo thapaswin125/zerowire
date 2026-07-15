@@ -1,9 +1,12 @@
 """Promote staged candidates into _posts/ and build digest PR bodies.
 
-This is the only script allowed to write into _posts/. It has three modes:
+This is the only script allowed to write into _posts/. It has four modes:
   --pr-body       print the checkbox list used as the digest PR body
   --ids a,b,c     promote specific candidates by id
   --all           promote every staged candidate
+  --must-know     promote only candidates with must_know true (hybrid
+                  auto-publish; the digest workflow runs this before
+                  opening the PR for everything else)
 """
 
 from __future__ import annotations
@@ -31,7 +34,8 @@ def pr_body() -> str:
     if not candidates:
         return "No new candidates today. Merging this PR is a no-op.\n"
     lines = [
-        "I check the box next to every item I want published, then merge.",
+        "Must-know items were auto-published during this run and are not listed.",
+        "I check the box next to anything else worth publishing, then merge.",
         "Unchecked items are discarded when this PR merges.",
         "",
     ]
@@ -86,15 +90,21 @@ def main() -> int:
     group.add_argument("--pr-body", action="store_true")
     group.add_argument("--ids", help="comma-separated candidate ids to promote")
     group.add_argument("--all", action="store_true")
+    group.add_argument("--must-know", action="store_true",
+                       help="promote only candidates flagged must_know")
     args = parser.parse_args()
 
     if args.pr_body:
         print(pr_body())
         return 0
 
-    wanted = None if args.all else {i.strip() for i in args.ids.split(",") if i.strip()}
+    wanted = None
+    if args.ids:
+        wanted = {i.strip() for i in args.ids.split(",") if i.strip()}
     promoted = 0
     for path, meta, body in load_candidates():
+        if args.must_know and meta.get("must_know") is not True:
+            continue
         if wanted is not None and str(meta.get("id")) not in wanted:
             continue
         name = promote(path, meta, body)
