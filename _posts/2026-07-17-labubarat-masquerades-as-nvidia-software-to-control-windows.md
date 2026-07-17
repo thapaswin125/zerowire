@@ -1,0 +1,17 @@
+---
+title: LabubaRAT Masquerades as NVIDIA Software to Control Windows Hosts
+date: 2026-07-17 06:34:27 +0000
+categories:
+- Daily Signal
+tags:
+- malware
+- windows
+- security-news
+severity: info
+must_know: false
+sources:
+- name: The Hacker News
+  url: https://thehackernews.com/2026/07/labubarat-masquerades-as-nvidia.html
+---
+
+Cybersecurity researchers have flagged a previously undocumented Rust-based remote access trojan (RAT) codenamed LabubaRAT that masquerades as NVIDIA software to blend into target environments. "LabubaRAT creates a reusable foothold for hands-on activity," Blackpoint Cyber researchers Sam Decker and Nevan Beal said in an analysis published today. "Once deployed, it can profile the host,
