@@ -1,0 +1,17 @@
+---
+title: ACR Stealer Uses ClickFix Lures to Steal Browser Tokens and Microsoft 365 Files
+date: 2026-07-19 07:03:25 +0000
+categories:
+- Daily Signal
+tags:
+- azure
+- credential-theft
+- security-news
+severity: info
+must_know: false
+sources:
+- name: The Hacker News
+  url: https://thehackernews.com/2026/07/acr-stealer-uses-clickfix-lures-to.html
+---
+
+ACR Stealer, an infostealer in circulation since 2024, is walking out of enterprise networks with saved browser passwords, live session tokens, PDFs, Microsoft 365 documents, and files from synced OneDrive and SharePoint folders. It gets in because someone pasted a command into a Run box and pressed Enter. Microsoft laid out two of the delivery chains on Thursday.

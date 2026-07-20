@@ -1,0 +1,17 @@
+---
+title: New Windows LegacyHive zero-day gives hackers admin privileges
+date: 2026-07-19 07:03:24 +0000
+categories:
+- Daily Signal
+tags:
+- windows
+- zero-day
+- security-news
+severity: info
+must_know: false
+sources:
+- name: BleepingComputer
+  url: https://www.bleepingcomputer.com/news/security/new-windows-legacyhive-zero-day-exploit-grants-hackers-admin-access/
+---
+
+A security researcher using the "Nightmare Eclipse" handle has released a Windows zero-day exploit dubbed LegacyHive that allows attackers to escalate privileges on up-to-date Windows systems. [...]

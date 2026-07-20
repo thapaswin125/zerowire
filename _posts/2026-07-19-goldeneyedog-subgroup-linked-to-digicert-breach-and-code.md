@@ -1,0 +1,17 @@
+---
+title: GoldenEyeDog Subgroup Linked to DigiCert Breach and Code-Signing Certificate Theft
+date: 2026-07-19 07:03:25 +0000
+categories:
+- Daily Signal
+tags:
+- apt
+- security-news
+- advisory
+severity: info
+must_know: false
+sources:
+- name: The Hacker News
+  url: https://thehackernews.com/2026/07/goldeneyedog-subgroup-linked-to.html
+---
+
+Cybersecurity researchers have attributed the April 2026 DigiCert security incident to a threat activity cluster dubbed CylindricalCanine. Expel, which shared technical details of the event, described the threat actor as a sub-group of GoldenEyeDog (aka APT-Q-27, Dragon Breath, and Miuuti Group), a Chinese cybercrime group known for its targeting of the gambling and gaming sectors using

@@ -1,0 +1,17 @@
+---
+title: 20+ Hijacked Government Websites Became an Attack Channel
+date: 2026-07-19 07:03:25 +0000
+categories:
+- Daily Signal
+tags:
+- malware
+- security-news
+- advisory
+severity: info
+must_know: false
+sources:
+- name: The Hacker News
+  url: https://thehackernews.com/2026/07/20-hijacked-government-websites.html
+---
+
+More than 20 Brazilian government websites were hijacked and turned into malware delivery channels in an active PhantomEnigma campaign uncovered by ANY.RUN, a leading provider of interactive malware analysis and threat intelligence solutions. The investigation revealed previously undocumented backdoor behavior, hidden infrastructure relationships, and multiple attack arms behind a campaign
