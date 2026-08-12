@@ -1,0 +1,17 @@
+---
+title: Kimsuky Builds Offline AI Stack to Boost Phishing and Automate Malware Development
+date: 2026-08-12 05:51:39 +0000
+categories:
+- Daily Signal
+tags:
+- apt
+- malware
+- phishing
+severity: info
+must_know: false
+sources:
+- name: The Hacker News
+  url: https://thehackernews.com/2026/08/kimsuky-builds-offline-ai-stack-that.html
+---
+
+North Korea's state hackers are no longer content to type prompts into public chatbots. One of the country's main espionage groups has begun running artificial intelligence (AI) offline on its own servers, connecting document-search tools to files in its possession, and collecting the software parts needed to build AI into its malware. South Korean security firm Genians says it uncovered the

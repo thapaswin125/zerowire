@@ -1,0 +1,17 @@
+---
+title: Mozilla Revokes Firefox and Thunderbird Linux Signing Key After Key Lands in Private Repo
+date: 2026-08-12 05:51:39 +0000
+categories:
+- Daily Signal
+tags:
+- browser
+- linux
+- security-news
+severity: info
+must_know: false
+sources:
+- name: The Hacker News
+  url: https://thehackernews.com/2026/08/mozilla-revokes-firefox-and-thunderbird.html
+---
+
+Mozilla has scrapped the cryptographic key behind Firefox and Thunderbird downloads for Linux after an unencrypted copy of it was committed by mistake to one of the company's own private code repositories. That key is how a user, or a Linux distribution packaging the browser, confirms a downloaded Firefox tarball came from Mozilla and was not tampered with. That decision carries a cost for

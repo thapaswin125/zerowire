@@ -1,0 +1,17 @@
+---
+title: OpenAI's Next AI Model Astra Shows Cyber Performance Strong Enough to Trigger Pause
+date: 2026-08-12 05:51:39 +0000
+categories:
+- Daily Signal
+tags:
+- llm
+- security-news
+- advisory
+severity: info
+must_know: false
+sources:
+- name: The Hacker News
+  url: https://thehackernews.com/2026/08/openais-next-ai-model-astra-shows-cyber.html
+---
+
+OpenAI has announced that it's pausing some "internal activities" involving its upcoming artificial intelligence (AI) model Astra after an internal evaluation found it had made significant advancements in agentic coding and cybersecurity. In response to the discovery, the AI upstart said it's implementing security controls for higher-capability models and associated activities, such as isolated

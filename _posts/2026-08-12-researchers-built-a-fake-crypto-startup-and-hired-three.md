@@ -1,0 +1,17 @@
+---
+title: Researchers Built a Fake Crypto Startup and Hired Three Suspected North Korean IT Workers
+date: 2026-08-12 05:51:39 +0000
+categories:
+- Daily Signal
+tags:
+- insider-threat
+- security-news
+- advisory
+severity: info
+must_know: false
+sources:
+- name: The Hacker News
+  url: https://thehackernews.com/2026/08/researchers-built-fake-crypto-startup.html
+---
+
+Security researchers invented a cryptocurrency startup, advertised developer jobs, and hired three people they believe were North Korean operatives. Every virtual machine the company issued was recording. The onboarding paperwork is the part hiring teams can use.
