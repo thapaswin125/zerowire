@@ -20,8 +20,16 @@ below; authoritative CVSS still comes from the NVD API during enrichment.
 
 ## Research
 
+Items from these feeds are categorised as Threat Research, not Daily Signal.
+Keep this list to sources whose posts are worth publishing unreviewed,
+because the digest auto-publishes research items. The matching names live in
+RESEARCH_SOURCES in scripts/vocab.py and must stay in sync.
+
 - [Google Project Zero](https://googleprojectzero.blogspot.com/feeds/posts/default?alt=rss)
 - [GitHub Security Blog](https://github.blog/security/feed/)
+- [Cisco Talos Intelligence](https://blog.talosintelligence.com/rss/)
+- [Unit 42](https://unit42.paloaltonetworks.com/feed/)
+- [Check Point Research](https://research.checkpoint.com/feed/)
 
 ## Vendor advisories
 

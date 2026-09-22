@@ -80,11 +80,12 @@ All stages live in `scripts/` and run on Python 3.11
    rules output on any failure. Triage never touches CVSS, EPSS, KEV,
    severity, or must_know.
 4. `promote_drafts.py` and `apply_selections.py` publish. Publishing is
-   hybrid: must-know candidates (KEV-listed or EPSS >= 0.5) auto-publish
-   during the digest run, so the site refreshes daily without my
-   involvement. Everything else lands in a PR whose body is a checkbox
-   list; I tick what I want, merge, and the publish workflow promotes
-   checked candidates into `_posts/` and discards the rest.
+   hybrid: must-know candidates (KEV-listed or EPSS >= 0.5) and everything
+   from the curated research feeds auto-publish during the digest run, so
+   the site refreshes daily without my involvement. Everything else lands
+   in a PR whose body is a checkbox list; I tick what I want, merge, and
+   the publish workflow promotes checked candidates into `_posts/` and
+   discards the rest.
 
 ## Automation
 

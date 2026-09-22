@@ -4,9 +4,11 @@ This is the only script allowed to write into _posts/. It has four modes:
   --pr-body       print the checkbox list used as the digest PR body
   --ids a,b,c     promote specific candidates by id
   --all           promote every staged candidate
-  --must-know     promote only candidates with must_know true (hybrid
-                  auto-publish; the digest workflow runs this before
-                  opening the PR for everything else)
+  --auto          promote what the daily digest publishes unreviewed:
+                  must_know candidates plus every Threat Research
+                  candidate, since research feeds are curated by source.
+                  The digest workflow runs this before opening the PR for
+                  whatever is left.
 """
 
 from __future__ import annotations
@@ -29,12 +31,24 @@ def load_candidates() -> list[tuple]:
     return out
 
 
+def is_auto_publishable(meta: dict) -> bool:
+    """Items the daily digest publishes without me checking a box.
+
+    Two cases: enrichment flagged it must-know (KEV or EPSS >= 0.5), or it
+    came from a research feed I already trust at the source level.
+    """
+    if meta.get("must_know") is True:
+        return True
+    return "Threat Research" in (meta.get("categories") or [])
+
+
 def pr_body() -> str:
     candidates = load_candidates()
     if not candidates:
         return "No new candidates today. Merging this PR is a no-op.\n"
     lines = [
-        "Must-know items were auto-published during this run and are not listed.",
+        "Must-know and Threat Research items were auto-published during this",
+        "run and are not listed here.",
         "I check the box next to anything else worth publishing, then merge.",
         "Unchecked items are discarded when this PR merges.",
         "",
@@ -90,8 +104,8 @@ def main() -> int:
     group.add_argument("--pr-body", action="store_true")
     group.add_argument("--ids", help="comma-separated candidate ids to promote")
     group.add_argument("--all", action="store_true")
-    group.add_argument("--must-know", action="store_true",
-                       help="promote only candidates flagged must_know")
+    group.add_argument("--auto", action="store_true",
+                       help="promote must_know candidates and Threat Research candidates")
     args = parser.parse_args()
 
     if args.pr_body:
@@ -103,7 +117,7 @@ def main() -> int:
         wanted = {i.strip() for i in args.ids.split(",") if i.strip()}
     promoted = 0
     for path, meta, body in load_candidates():
-        if args.must_know and meta.get("must_know") is not True:
+        if args.auto and not is_auto_publishable(meta):
             continue
         if wanted is not None and str(meta.get("id")) not in wanted:
             continue

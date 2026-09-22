@@ -105,6 +105,9 @@ MITRE_MAP = {
 RESEARCH_SOURCES = {
     "Google Project Zero",
     "GitHub Security Blog",
+    "Cisco Talos Intelligence",
+    "Unit 42",
+    "Check Point Research",
 }
 
 # Cap and floor for how many tags rules-based triage assigns.
