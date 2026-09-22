@@ -38,6 +38,22 @@ Editing rules for AI sessions working on ZeroWire.
 - Enrichment results are cached in `.cache/`; do not remove the caching or
   the NVD backoff, they keep the free-tier rate limits comfortable.
 
+## Automation gotchas
+
+- A push made by a workflow using the built-in `GITHUB_TOKEN` does NOT fire
+  `on: push`. That is why `pages-deploy.yml` also carries a `workflow_run`
+  trigger listing the digest and publish workflows. Removing that trigger
+  silently freezes the live site while commits keep landing on main, so
+  leave it in place and add any new publishing workflow to its list.
+- `pages-deploy.yml` checks out `ref: main` on purpose, because a
+  `workflow_run` build can otherwise land on the commit from before the
+  bot pushed.
+- Auto-publish rules live in `is_auto_publishable` in
+  `scripts/promote_drafts.py`: must-know items plus anything categorised
+  Threat Research. Research is trusted at the source level, so keep
+  `RESEARCH_SOURCES` in `vocab.py` in sync with the Research section of
+  `rss-sources.md` and only list feeds worth publishing unreviewed.
+
 ## Workflow
 
 - Local dev: `bundle exec jekyll serve --future`.

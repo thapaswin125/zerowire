@@ -3,6 +3,12 @@ name: Build and deploy Pages
 on:
   push:
     branches: [main]
+  # A push made by a workflow using the built-in GITHUB_TOKEN does NOT fire
+  # the push trigger above, so the daily bot commits would never deploy.
+  # workflow_run fires regardless, which is what keeps the site current.
+  workflow_run:
+    workflows: ["RSS digest", "Publish selected drafts"]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -18,7 +24,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Pin to main: on a workflow_run trigger the default checkout ref can
+      # be the commit from before the bot pushed today's posts.
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - uses: ruby/setup-ruby@v1
         with:
