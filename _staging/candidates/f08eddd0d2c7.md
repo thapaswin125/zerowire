@@ -1,0 +1,19 @@
+---
+id: f08eddd0d2c7
+candidate: true
+title: Hacked Ukrainian Sites Serve Fake Cloudflare ClickFix Lures for Psychedelic Stealer
+date: 2026-09-26 09:26:29 +0000
+categories:
+- Daily Signal
+tags:
+- cloud
+- windows
+- security-news
+severity: info
+must_know: false
+sources:
+- name: The Hacker News
+  url: https://thehackernews.com/2026/09/hacked-ukrainian-sites-serve-fake.html
+---
+
+An active ClickFix campaign has been observed compromising legitimate Ukrainian business websites to inject bogus Cloudflare verification pages and trick victims into downloading a previously undocumented information stealer called Psychedelic. "When a visitor interacts with the page, the lure copies a Windows Installer command to the clipboard and instructs the visitor to paste it into the
