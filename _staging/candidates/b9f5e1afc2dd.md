@@ -1,0 +1,19 @@
+---
+id: b9f5e1afc2dd
+candidate: true
+title: Attackers Hijack .gh, .sl, and .as Registries to Obtain Certificates for Google Domains
+date: 2026-10-10 10:43:16 +0000
+categories:
+- Daily Signal
+tags:
+- security-news
+- advisory
+- watchlist
+severity: info
+must_know: false
+sources:
+- name: The Hacker News
+  url: https://thehackernews.com/2026/10/attackers-hijack-gh-sl-and-as.html
+---
+
+Attackers compromised three country-code top-level domains (ccTLDs) and obtained unauthorized HTTPS certificates for several Google domains, Google said on October 6. Google's own systems were not breached, but any domain ending in .gh (Ghana), .sl (Sierra Leone) or .as (American Samoa) was put at risk. With such a certificate, an attacker could pose as the real site over an encrypted
