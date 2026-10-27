@@ -1,0 +1,22 @@
+---
+id: 9ca3c5eee3a1
+candidate: true
+title: CVE-2026-65220 - Supermicro BMC IPMI feature contains a Privilege escalation vulnerability
+date: 2026-10-27 09:55:44 +0000
+categories:
+- Daily Signal
+tags:
+- firmware
+- privesc
+- security-news
+severity: high
+must_know: false
+sources:
+- name: Recent CVEs (CVEFeed mirror of NVD)
+  url: https://cvefeed.io/vuln/detail/CVE-2026-65220
+cve: CVE-2026-65220
+cvss: 8.8
+kev: false
+---
+
+CVE ID : CVE-2026-65220 Published : Oct. 27, 2026, 8:02 a.m. | 17 minutes ago Description : A logic flaw in the BMC IPMI implementation may allow an attacker to send specially crafted RAKP+ messages and escalate an account to administrator privileges.
