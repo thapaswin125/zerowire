@@ -1,0 +1,22 @@
+---
+id: a5de3dbc09bc
+candidate: true
+title: CVE-2026-16521 - Supermicro BMC's syslog feature contains a command injection vulnerability
+date: 2026-10-27 09:55:44 +0000
+categories:
+- Daily Signal
+tags:
+- firmware
+- rce
+- security-news
+severity: high
+must_know: false
+sources:
+- name: Recent CVEs (CVEFeed mirror of NVD)
+  url: https://cvefeed.io/vuln/detail/CVE-2026-16521
+cve: CVE-2026-16521
+cvss: 7.2
+kev: false
+---
+
+CVE ID : CVE-2026-16521 Published : Oct. 27, 2026, 7:22 a.m. | 58 minutes ago Description : An OS command injection vulnerability exists because of insufficient input filtering.
