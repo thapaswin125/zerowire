@@ -1,0 +1,20 @@
+---
+title: PHP Issues Second Windows Security Update in Five Days to Fix Brotli Code Execution Flaw
+date: 2026-10-27 09:55:47 +0000
+categories:
+- Daily Signal
+tags:
+- patch
+- windows
+- security-news
+severity: critical
+must_know: false
+sources:
+- name: The Hacker News
+  url: https://thehackernews.com/2026/10/php-issues-second-windows-security.html
+cve: CVE-2026-111497
+cvss: 9.2
+kev: false
+---
+
+PHP has rebuilt its official Windows packages for PHP 8.2 through 8.5 to fix CVE-2026-111497, a flaw in the Brotli compression library that the packages include. The flaw can let an attacker corrupt memory and potentially run code. PHP says the flaw can be reached through the cURL extension when the extension decompresses HTTP responses automatically.
