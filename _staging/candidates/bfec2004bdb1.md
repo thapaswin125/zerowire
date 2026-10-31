@@ -1,0 +1,19 @@
+---
+id: bfec2004bdb1
+candidate: true
+title: TeamViewer Flaw Lets Remote Computers Attack Users Who Connect to Control Them
+date: 2026-10-31 10:29:37 +0000
+categories:
+- Daily Signal
+tags:
+- security-news
+- advisory
+- watchlist
+severity: info
+must_know: false
+sources:
+- name: The Hacker News
+  url: https://thehackernews.com/2026/10/teamviewer-flaw-lets-remote-computers.html
+---
+
+TeamViewer has fixed a flaw that lets the machine being controlled in a remote session attack the computer that connected to control it. In a TeamViewer session, the computer that connects and takes control is the viewer, and the machine it controls is the host. A malicious or compromised host can exploit the flaw to crash the viewer's TeamViewer and, depending on the platform, may also run
