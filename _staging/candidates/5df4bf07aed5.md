@@ -1,0 +1,19 @@
+---
+id: 5df4bf07aed5
+candidate: true
+title: Operation Endgame Takes Down Gootloader, CastleRAT and StealC Servers, Seizes 6.4M Stolen Logins
+date: 2026-11-14 11:38:46 +0000
+categories:
+- Daily Signal
+tags:
+- malware
+- ransomware
+- security-news
+severity: info
+must_know: false
+sources:
+- name: The Hacker News
+  url: https://thehackernews.com/2026/11/operation-endgame-takes-down-gootloader.html
+---
+
+An international police operation took down servers behind Gootloader, CastleRAT and StealC this week. Criminals used the three malware tools to gain access to computers, steal passwords, and launch ransomware attacks. Police also seized about 6.4 million stolen logins belonging to more than 40,000 victims, according to Germany's Federal Criminal Police Office (BKA).
